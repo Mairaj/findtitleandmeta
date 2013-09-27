@@ -1,0 +1,14 @@
+<html>
+<head></head>
+<body>
+<form method="POST" action="/savedata" enctype="multipart/form-data">{%csrf_token%}
+{% for i in seo_form %}
+
+	{{i.help_text}} {{i}}</br>
+
+{% endfor %}
+
+<div class='button' style ="margin-left:298px;"> <input type="submit" value="Click here to save"></div>
+</div>
+</body>
+</html>
