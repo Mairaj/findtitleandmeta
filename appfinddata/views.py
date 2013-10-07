@@ -1,5 +1,3 @@
-
-
 from appfinddata.forms import UrlInputForm, datainputform
 from appfinddata.models import WebsiteData
 from django.shortcuts import render_to_response,render
@@ -7,8 +5,8 @@ from django.template import RequestContext
 from bs4 import BeautifulSoup
 import urllib
 import urllib2
-from django.http import HttpResponse
-
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 
 def app_view1(request):
 	template_name = 'UrlInputForm.html'
@@ -38,11 +36,12 @@ def app_view1(request):
 
 
 def app_view3(request, *args):
+	messages.success( request, 'Test successful' )	
 	if request.method == 'POST':
 		form = datainputform(data = request.POST)
 		if form.is_valid():
 			form.save()
-	return HttpResponse('Data is saved succesfully')
+	return HttpResponseRedirect('/')
 
 
 
